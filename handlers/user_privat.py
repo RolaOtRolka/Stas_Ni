@@ -33,7 +33,7 @@ async def addresses(message: types.Message):
     await message.answer('Ул. Пушкина д. Калатушкина')
 
 
-@user_router.message(F.text)
+# @user_router.message(F.text)
 # @user_router.message(F.photo)
 # @user_router.message(F.text.lower() == 'доставка')
 # @user_router.message(F.text.lower().contains('доставк'))
