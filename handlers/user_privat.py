@@ -1,21 +1,22 @@
 from aiogram import types, Router, F
 from aiogram.filters import CommandStart, Command
+from keyboards import reply
 
 user_router = Router()
 
 
 @user_router.message(CommandStart())
 async def start(message: types.Message):
-    await message.answer('Привет это бот Стаса, пока находиться в разработке, здесь ты сможешь покупать машины')
+    await message.answer('Привет это бот Стаса, пока находиться в разработке, здесь ты сможешь покупать машины', reply_markup=reply.main_kb)
 
 
 @user_router.message(F.text.lower() == 'каталог')
 @user_router.message(Command('catalog'))
 async def catalog(message: types.Message):
-    await message.answer('Каталог в котором в скором времени будут товары')
+    await message.answer('Каталог товаров', reply_markup=reply.catalog_kb)
 
 
-@user_router.message(F.text.lower() == 'про нас') | (F.text.lower() == 'о нас')
+@user_router.message(F.text.lower() == 'про нас')
 @user_router.message(Command('about'))
 async def about(message: types.Message):
     await message.answer('Бот для продажи авто по Беларуси')
@@ -31,6 +32,11 @@ async def contacts(message: types.Message):
 @user_router.message(Command('addresses'))
 async def addresses(message: types.Message):
     await message.answer('Ул. Пушкина д. Калатушкина')
+
+
+@user_router.message(F.text.lower() == 'назад')
+async def back_menu(message: types.Message):
+    await message.answer('Главное меню', reply_markup=reply.main_kb)
 
 
 # @user_router.message(F.text)
