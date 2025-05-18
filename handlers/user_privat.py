@@ -1,13 +1,15 @@
+from idlelib.query import Query
+
 from aiogram import types, Router, F
 from aiogram.filters import CommandStart, Command
-from keyboards import reply
+from keyboards import reply, inline
 
 user_router = Router()
 
 
 @user_router.message(CommandStart())
 async def start(message: types.Message):
-    await message.answer('Привет это бот Стаса, пока находиться в разработке, здесь ты сможешь покупать машины', reply_markup=reply.main_kb)
+    await message.answer('Добро пожаловать в мир автопокупок с нашим виртуальным помощником! \n \n Этот умный бот поможет вам легко найти идеальный автомобиль. Он предоставляет актуальные предложения, сравнивает цены и отвечает на все ваши вопросы о характеристиках . С ним процесс покупки станет простым и увлекательным! \n \n Давайте начнем ваше автомобильное путешествие вместе!', reply_markup=reply.main_kb)
 
 
 @user_router.message(F.text.lower() == 'каталог')
@@ -31,7 +33,19 @@ async def contacts(message: types.Message):
 @user_router.message(F.text.lower() == 'адрес')
 @user_router.message(Command('addresses'))
 async def addresses(message: types.Message):
-    await message.answer('Ул. Пушкина д. Калатушкина')
+    await message.answer('наши адреса:', reply_markup=inline.addresses_kb())
+
+
+@user_router.callback_query(F.data.lower().startswith('addresses'))
+async def addresses_info(callback:types.CallbackQuery):
+    query = callback.data.split('_')[1]
+    if query == '1':
+        await callback.message.answer('Здание находиться рядом с Кремлем \nГ. Москва ул. Пушкина д. Калатушкина')
+    elif query == '2':
+        await callback.message.answer('''Выходите из стании метро Немига, идете прямо, на лево и рядом с ТЦ Галерея будет вход в автосалон \n Г. Минск ул. Немига д. 42''')
+    else:
+        await callback.message.answer('Выходите из стании метро Brodno, идете прямо и там будет наш автосалон \n Г. Варшава ул. Стефана Баторего д. 43')
+    await callback.answer('Адрес отправлен')
 
 
 @user_router.message(F.text.lower() == 'назад')
