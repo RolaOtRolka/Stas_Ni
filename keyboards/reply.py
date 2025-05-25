@@ -5,8 +5,8 @@ back_btn = KeyboardButton(text='Назад')
 
 main_kb = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text='Каталог'), KeyboardButton(text='Про нас')],
-        [KeyboardButton(text='Контакт'), KeyboardButton(text='Адрес')]
+        [KeyboardButton(text='Каталог🚘'), KeyboardButton(text='Про нас🤫')],
+        [KeyboardButton(text='Контакт📱'), KeyboardButton(text='Адрес🗺')]
     ],
     resize_keyboard=True,
     input_field_placeholder='Нажмите на кнопку ниже...'

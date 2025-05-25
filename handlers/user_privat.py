@@ -12,25 +12,37 @@ async def start(message: types.Message):
     await message.answer('Добро пожаловать в мир автопокупок с нашим виртуальным помощником! \n \n Этот умный бот поможет вам легко найти идеальный автомобиль. Он предоставляет актуальные предложения, сравнивает цены и отвечает на все ваши вопросы о характеристиках . С ним процесс покупки станет простым и увлекательным! \n \n Давайте начнем ваше автомобильное путешествие вместе!', reply_markup=reply.main_kb)
 
 
-@user_router.message(F.text.lower() == 'каталог')
+@user_router.message(F.text.lower() == 'каталог🚘')
 @user_router.message(Command('catalog'))
 async def catalog(message: types.Message):
     await message.answer('Каталог товаров', reply_markup=reply.catalog_kb)
 
 
-@user_router.message(F.text.lower() == 'про нас')
+@user_router.message(F.text.lower() == 'про нас🤫')
 @user_router.message(Command('about'))
 async def about(message: types.Message):
-    await message.answer('Бот для продажи авто по Беларуси')
+    await message.answer('Бот для продажи авто по Беларуси', reply_markup=inline.links_kb)
 
 
-@user_router.message(F.text.lower() == 'контакт')
+@user_router.message(F.text.lower() == 'контакт📱')
 @user_router.message(Command('contacts'))
 async def contacts(message: types.Message):
-    await message.answer('Контакты: +375339009914')
+    await message.answer('''Контакты: +375339009914''')
+
+#     await message.answer('''tagy HTML
+#
+# <b>Жирный</b>
+# <i>Курсив</i>
+# <u>Подчеркнутый</u>
+# <s>Зачеркнутый</s>
+# <tg-spoiler>Спойлер</tg-spoiler>
+# <a href='https://www.porsche.com/central-eastern-europe/ru/'>Сыллка</a>
+# <code>Код</code>
+# <pre>Стаснислав Ничипор</pre>
+# ''')
 
 
-@user_router.message(F.text.lower() == 'адрес')
+@user_router.message(F.text.lower() == 'адрес🗺')
 @user_router.message(Command('addresses'))
 async def addresses(message: types.Message):
     await message.answer('наши адреса:', reply_markup=inline.addresses_kb())

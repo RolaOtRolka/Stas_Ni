@@ -1,7 +1,6 @@
-from itertools import combinations_with_replacement
+from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from aiogram .utils .keyboard import InlineKeyboardBuilder
-from aiogram .types import InlineKeyboardButton
 
 def addresses_kb():
     builder = InlineKeyboardBuilder()
@@ -13,3 +12,13 @@ def addresses_kb():
     )
 
     return builder.as_markup()
+
+
+links_kb = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text='сайт', url='https://www.porsche.com/central-eastern-europe/ru/'),
+            InlineKeyboardButton(text='телеграмм', url='tg://resolve?domain=Rola_ot_rolka')
+         ]
+    ]
+)
